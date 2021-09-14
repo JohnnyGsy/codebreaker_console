@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "icodebreaker_gem/version"
+require_relative 'icodebreaker_gem/version'
 
 module IcodebreakerGem
   class Error < StandardError; end

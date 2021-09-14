@@ -9,3 +9,5 @@ require 'statistics'
 
 require 'code'
 require 'game'
+require 'icodebreaker_gem/version'
+require 'icodebreaker_gem'

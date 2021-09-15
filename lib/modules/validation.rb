@@ -1,7 +1,6 @@
 # frozen_string_literal: true
-
-module Codebreaker
-  module IcodebreakerGem
+module IcodebreakerGem
+  module Validation 
     def validate_name(name)
       raise ArgumentError, 'Incorrect username' unless name.to_s.match?(/^[0-9a-zA-Z]{3,20}$/)
     end
@@ -15,3 +14,4 @@ module Codebreaker
     end
   end
 end
+

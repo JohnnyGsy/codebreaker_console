@@ -1,11 +1,10 @@
 # frozen_string_literal: true
 
 module IcodebreakerGem
-  module Validation
-    class NoHintsError < StandardError
-      def initialize(message = 'No hints left.')
-        super
-      end
+  class NoHintsError < StandardError
+    def initialize(msg = 'No hints left.')
+      super(msg)
     end
   end
+ 
 end

@@ -24,12 +24,14 @@ Gem::Specification.new do |spec|
   spec.bindir        = 'exe'
   spec.executables   = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
-
+ 
+  spec.add_dependency 'rake', '~> 13.0'
+ 
   spec.add_development_dependency 'fasterer'
   spec.add_development_dependency 'pry'
   spec.add_development_dependency 'rspec', '~> 3.0'
-  spec.add_development_dependency 'rubocop', '~> 1.7'
   spec.add_development_dependency 'simplecov'
+  spec.add_development_dependency 'rubocop', '~> 1.7'
 
-  spec.add_dependency 'rake', '~> 13.0'
+  
 end

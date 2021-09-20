@@ -1,4 +1,6 @@
-module IcodebreakerGem 
+# frozen_string_literal: true
+
+module IcodebreakerGem
   class Code
     include Validation
 

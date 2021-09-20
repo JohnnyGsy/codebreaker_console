@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module IcodebreakerGem
   RSpec.describe Game do
     describe '#username' do

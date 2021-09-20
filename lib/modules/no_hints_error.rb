@@ -3,8 +3,7 @@
 module IcodebreakerGem
   class NoHintsError < StandardError
     def initialize(msg = 'No hints left.')
-      super(msg)
+      super
     end
   end
- 
 end

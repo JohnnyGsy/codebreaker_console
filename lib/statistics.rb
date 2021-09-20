@@ -1,8 +1,11 @@
+# frozen_string_literal: true
+
 module IcodebreakerGem
   class Statistics
     include Storage
 
     attr_reader :games, :file
+
     def initialize(path)
       @file = path
       @games = load_games

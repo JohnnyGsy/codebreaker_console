@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module IcodebreakerGem
   class Game
     include Validation
@@ -23,9 +24,7 @@ module IcodebreakerGem
       }
     }.freeze
 
-    attr_reader :name, :difficulty
-    attr_reader :attempts_used, :hints_used
-    attr_reader :status, :outcome
+    attr_reader :name, :difficulty, :attempts_used, :hints_used, :status, :outcome
 
     def initialize(name = 'User1', difficulty = :easy, secret = Code.random)
       validate_name name
@@ -44,11 +43,11 @@ module IcodebreakerGem
     end
 
     def attempts_total
-      Game::DIFFICULTIES[difficulty][:attempts_total]
+      DIFFICULTIES[difficulty][:attempts_total]
     end
 
     def hints_total
-      Game::DIFFICULTIES[difficulty][:hints_total]
+      DIFFICULTIES[difficulty][:hints_total]
     end
 
     def attempt(attempt_code)

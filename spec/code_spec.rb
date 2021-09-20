@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module IcodebreakerGem
   RSpec.describe Code do
     it 'should contain the secret code' do

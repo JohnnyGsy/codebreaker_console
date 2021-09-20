@@ -1,4 +1,6 @@
-module IcodebreakerGem  
+# frozen_string_literal: true
+
+module IcodebreakerGem
   RSpec.describe Statistics do
     let(:statistics) { Statistics.new("#{__dir__}/temp/statistics.yml") }
     let(:game) { Game.new }

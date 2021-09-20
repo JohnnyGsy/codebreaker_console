@@ -3,7 +3,7 @@
 module IcodebreakerGem
   class GameOverError < StandardError
     def initialize(msg = 'The game is over.')
-      super(msg)
+      super
     end
   end
- end
+end

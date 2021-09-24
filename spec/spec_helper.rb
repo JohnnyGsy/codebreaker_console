@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require './lib/config'
-require 'icodebreaker_gem'
 require 'simplecov'
 SimpleCov.start
+require './lib/config'
+require 'icodebreaker_gem'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

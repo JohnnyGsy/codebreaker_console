@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 module IcodebreakerGem
-  class Code
+  class GameCore
     include Validation
 
     attr_reader :secret
 
-    def initialize(secret = Code.random)
+    def initialize(secret)
       validate_code secret
 
       @secret = secret.to_s
@@ -18,10 +18,11 @@ module IcodebreakerGem
       return '++++' if @secret == guess
       return '' if (@secret.each_char.to_a & guess.each_char.to_a).empty?
 
-      bulls1, cows1 = bulls_and_cows(@secret, guess)
-      bulls2, cows2 = bulls_and_cows(guess, @secret)
+      pluses1, minuses1 = pluses_and_minuses(@secret, guess)
 
-      '+' * [bulls1, bulls2].min + '-' * [cows1, cows2].min
+      pluses2, minuses2 = pluses_and_minuses(guess, @secret)
+
+      '+' * [pluses1, pluses2].min + '-' * [minuses1, minuses2].min
     end
 
     def hint
@@ -37,16 +38,16 @@ module IcodebreakerGem
 
     private
 
-    def bulls_and_cows(word1, word2)
-      bulls = cows = 0
+    def pluses_and_minuses(word1, word2)
+      pluses = minuses = 0
       word1.each_char.to_a.each_index do |index|
         if word2[index] == word1[index]
-          bulls += 1
+          pluses += 1
         elsif word2.include? word1[index]
-          cows += 1
+          minuses += 1
         end
       end
-      [bulls, cows]
+      [pluses, minuses]
     end
   end
 end

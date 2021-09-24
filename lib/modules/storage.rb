@@ -1,21 +1,36 @@
 # frozen_string_literal: true
 
-require 'fileutils'
-require 'psych'
-
 module IcodebreakerGem
   module Storage
-    def save(object, filepath)
-      FileUtils.mkdir_p File.dirname(filepath)
-      dump_of_object = Psych.dump(object)
-      File.open(filepath, 'w') do |file|
-        file.write dump_of_object
+    DATA_FILE = 'codebreakers.yml'
+    STORAGE_PATH = './storage/'
+    def save(game)
+      create_storage
+      games = load
+      games << game
+      File.open(data_path, 'w') do |file|
+        YAML.dump(games, file)
       end
     end
 
-    def load(filepath)
-      file = File.read(filepath)
-      Psych.safe_load(file, [Symbol, Game, Statistics], [], true)
+    def load
+      create_storage
+      YAML.load(File.read(data_path)) || []
+    end
+
+    def sort_codebreakers
+    load.sort_by {}
+  
+    end
+    private
+
+    def data_path
+      STORAGE_PATH + DATA_FILE
+    end
+
+    def create_storage
+      Dir.mkdir(STORAGE_PATH) unless File.exist?(STORAGE_PATH)
+      File.open(data_path, 'w') unless File.exist?(data_path)
     end
   end
 end

@@ -3,30 +3,13 @@
 module IcodebreakerGem
   class Game
     include Validation
+    include Storage
+   
+  
 
-    STATUS = %i[go_on over].freeze
-    OUTCOME = %i[win lose].freeze
-    DIFFICULTIES = {
-      easy: {
-        score: 200,
-        attempts_total: 15,
-        hints_total: 2
-      },
-      medium: {
-        score: 400,
-        attempts_total: 10,
-        hints_total: 1
-      },
-      hell: {
-        score: 600,
-        attempts_total: 5,
-        hints_total: 1
-      }
-    }.freeze
+    attr_reader :name, :difficulty, :attempts_used, :hints_used, :status, :result
 
-    attr_reader :name, :difficulty, :attempts_used, :hints_used, :status, :outcome
-
-    def initialize(name = 'User1', difficulty = :easy, secret = Code.random)
+    def initialize(name = 'User1', difficulty = :easy, secret = GameCore.random)
       validate_name name
       validate_difficulty difficulty
 
@@ -37,9 +20,9 @@ module IcodebreakerGem
       @hints_used = 0
 
       @status = :go_on
-      @outcome = nil
+      @result = nil
 
-      @code = Code.new(secret)
+      @code = GameCore.new(secret)
     end
 
     def attempts_total
@@ -59,25 +42,25 @@ module IcodebreakerGem
         check_lose
         answer
       when :over
-        raise GameOverError
+        'The game is over.'
       end
     end
 
     def hint
       case @status
       when :go_on
-        raise NoHintsError if @hints_used >= hints_total
+        return 'No hints left.' if @hints_used >= hints_total
 
         @hints_used += 1
         @code.hint
       when :over
-        raise GameOverError
+        'The game is over.'
       end
     end
 
     def game_data
       {
-        rating: rating,
+       
         name: name,
         difficulty: difficulty.to_s,
         attempts_total: attempts_total,
@@ -87,14 +70,7 @@ module IcodebreakerGem
       }
     end
 
-    def rating
-      case outcome
-      when :win
-        DIFFICULTIES[difficulty][:score] - 10 * attempts_used - hints_used
-      else
-        0
-      end
-    end
+    
 
     private
 
@@ -102,14 +78,14 @@ module IcodebreakerGem
       return unless answer.eql?('++++')
 
       @status = :over
-      @outcome = :win
+      @result = :win
     end
 
     def check_lose
       return unless @attempts_used >= attempts_total
 
       @status = :over
-      @outcome = :lose
+      @result = :lose
     end
   end
 end

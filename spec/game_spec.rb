@@ -61,10 +61,10 @@ module IcodebreakerGem
     describe '#gameplay' do
       it 'have play status' do
         game = Game.new
-        expect(Game::STATUS).to eq(%i[go_on over])
-        expect(Game::OUTCOME).to eq(%i[win lose])
+        expect(STATUS).to eq(%i[go_on over])
+        expect(RESULT).to eq(%i[win lose])
         expect(game.status).to be(:go_on)
-        expect(game.outcome).to be_nil
+        expect(game.result).to be_nil
       end
 
       let(:test_easy_win) do
@@ -88,8 +88,8 @@ module IcodebreakerGem
         end
         expect(game.attempts_used).to eq(7)
         expect(game.status).to be(:over)
-        expect(game.outcome).to be(:win)
-        expect(game.rating).to be(130)
+        expect(game.result).to be(:win)
+       
       end
 
       let(:test_hell_lose) do
@@ -111,21 +111,28 @@ module IcodebreakerGem
         end
         expect(game.attempts_used).to eq(5)
         expect(game.status).to be(:over)
-        expect(game.outcome).to be(:lose)
-        expect(game.rating).to eq(0)
+        expect(game.result).to be(:lose)
+      
       end
     end
 
     describe '#hints' do
       it 'have limited amount of hints' do
-        Game::DIFFICULTIES.each do |level|
+        DIFFICULTIES.each do |level|
           game = Game.new('HintUser', level.first, '1234')
           game.hints_total.times do
             expect(game.hint).to match(/^[0-9]$/)
           end
-          expect { game.hint }.to raise_error(NoHintsError)
+          expect(game.hint).to eq('No hints left.')
         end
       end
     end
+    describe '#load' do
+      game = Game.new
+      it 'returns empty array if file not exist' do
+        expect(game.load).to be_empty
+      end
+    end
+    
   end
 end

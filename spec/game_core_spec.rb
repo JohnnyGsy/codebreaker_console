@@ -1,27 +1,27 @@
 # frozen_string_literal: true
 
 module IcodebreakerGem
-  RSpec.describe Code do
+  RSpec.describe GameCore do
     it 'should contain the secret code' do
-      code = Code.new('6543')
+      code = GameCore.new('6543')
       expect(code.secret).to eq('6543')
     end
 
     it 'raise error on incorrect codes' do
-      expect { Code.new('1234') }.not_to raise_error
-      expect { Code.new('12345') }.to raise_error(ArgumentError)
-      expect { Code.new('123') }.to raise_error(ArgumentError)
+      expect { GameCore.new('1234') }.not_to raise_error
+      expect { GameCore.new('12345') }.to raise_error(ArgumentError)
+      expect { GameCore.new('123') }.to raise_error(ArgumentError)
     end
 
     describe '#random' do
       it 'should generate random codes that matches pattern' do
-        expect { Code.new }.not_to raise_error
+        expect(GameCore.random).to match(/^[1-6]{4}$/)
       end
     end
 
     describe '#hint' do
       it 'gave one number of secret code' do
-        code = Code.new
+        code = GameCore.new('1234')
         expect(code.secret.include?(code.hint)).to be_truthy
       end
     end
@@ -57,12 +57,12 @@ module IcodebreakerGem
         }
       }
 
-      test_compare.each do |test_number, test_content|
-        describe test_number.to_s do
+      test_compare.each do |test_variant, test_content|
+        describe test_variant do
           secret = test_content[:secret]
-          code = Code.new(secret)
+          code = GameCore.new(secret)
           test_content[:guess].each do |input, output|
-            formatted_output = "'#{output}'".ljust(6)
+            formatted_output = "'#{output}'"
             it "return #{formatted_output} if secret is #{secret} and guess is #{input}" do
               expect(code.compare(input)).to eq(output)
             end

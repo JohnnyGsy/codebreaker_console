@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.description   = 'Guess the secret code'
   spec.homepage      = 'https://github.com/JohnnyGsy/icodebreaker_gem'
   spec.license       = 'MIT'
-  spec.required_ruby_version = '>= 2.5.0'
+  spec.required_ruby_version = '>= 2.7.0'
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
@@ -25,7 +25,6 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'i18n'
   spec.add_dependency 'rake', '~> 13.0'
 
   spec.add_development_dependency 'fasterer'

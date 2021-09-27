@@ -126,9 +126,9 @@ module IcodebreakerGem
       end
     end
     describe '#load_storage' do
-      game = Game.new
+     
       it 'returns empty array if file not exist' do
-        expect(game.load_storage).to be_empty
+        expect(Storage.load_storage).to be_empty
       end
     end
   end

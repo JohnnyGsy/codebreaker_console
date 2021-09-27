@@ -89,7 +89,6 @@ module IcodebreakerGem
         expect(game.attempts_used).to eq(7)
         expect(game.status).to be(:over)
         expect(game.result).to be(:win)
-       
       end
 
       let(:test_hell_lose) do
@@ -112,7 +111,6 @@ module IcodebreakerGem
         expect(game.attempts_used).to eq(5)
         expect(game.status).to be(:over)
         expect(game.result).to be(:lose)
-      
       end
     end
 
@@ -127,12 +125,11 @@ module IcodebreakerGem
         end
       end
     end
-    describe '#load' do
+    describe '#load_storage' do
       game = Game.new
       it 'returns empty array if file not exist' do
-        expect(game.load).to be_empty
+        expect(game.load_storage).to be_empty
       end
     end
-    
   end
 end

@@ -11,4 +11,3 @@ require './lib/game'
 require './lib/icodebreaker_gem/version'
 require './lib/icodebreaker_gem'
 require './lib/constants'
-

@@ -9,4 +9,3 @@ require 'yaml'
 require 'icodebreaker_gem/version'
 require 'icodebreaker_gem'
 require 'constants'
-

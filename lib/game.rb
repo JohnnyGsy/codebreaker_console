@@ -4,8 +4,6 @@ module IcodebreakerGem
   class Game
     include Validation
     include Storage
-   
-  
 
     attr_reader :name, :difficulty, :attempts_used, :hints_used, :status, :result
 
@@ -60,7 +58,7 @@ module IcodebreakerGem
 
     def game_data
       {
-       
+
         name: name,
         difficulty: difficulty.to_s,
         attempts_total: attempts_total,
@@ -69,8 +67,6 @@ module IcodebreakerGem
         hints_used: hints_used
       }
     end
-
-    
 
     private
 

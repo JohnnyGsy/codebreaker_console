@@ -4,24 +4,26 @@ module IcodebreakerGem
   module Storage
     DATA_FILE = 'codebreakers.yml'
     STORAGE_PATH = './storage/'
-    def save(game)
+    def save_storage(game)
       create_storage
-      games = load
+      games = load_storage
       games << game
       File.open(data_path, 'w') do |file|
         YAML.dump(games, file)
       end
     end
 
-    def load
+    def load_storage
       create_storage
       YAML.load(File.read(data_path)) || []
     end
 
     def sort_codebreakers
-    load.sort_by {}
-  
+      load_storage.sort_by do |statistic|
+        [statistic[:attempts_total], statistic[:attempts_used], statistic[:hints_used]]
+      end
     end
+
     private
 
     def data_path

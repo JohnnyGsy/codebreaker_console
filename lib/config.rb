@@ -3,11 +3,11 @@
 
 require 'yaml'
 
-require 'modules/validation'
-require 'modules/storage'
+require_relative 'modules/validation'
+require_relative 'modules/storage'
 
-require 'game_core'
-require 'game'
-require 'icodebreaker_gem/version'
-require 'icodebreaker_gem'
-require 'constants'
+require_relative 'game_core'
+require_relative 'game'
+require_relative 'icodebreaker_gem/version'
+require_relative 'icodebreaker_gem'
+require_relative 'constants'

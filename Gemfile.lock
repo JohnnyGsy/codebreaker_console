@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    icodebreaker_gem (0.2.2)
+    icodebreaker_gem (0.3.0)
       rake (~> 13.0)
 
 GEM

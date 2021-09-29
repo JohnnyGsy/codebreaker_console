@@ -4,7 +4,7 @@ module IcodebreakerGem
   RSpec.describe GameCore do
     it 'should contain the secret code' do
       code = GameCore.new('6543')
-      expect(code.secret).to eq('6543')
+      expect(code.instance_variable_get(:@secret)).to eq('6543')
     end
 
     it 'raise error on incorrect codes' do
@@ -22,7 +22,7 @@ module IcodebreakerGem
     describe '#hint' do
       it 'gave one number of secret code' do
         code = GameCore.new('1234')
-        expect(code.secret.include?(code.hint)).to be_truthy
+        expect(code.instance_variable_get(:@secret).include?(code.hint)).to be_truthy
       end
     end
 

@@ -19,9 +19,9 @@ module IcodebreakerGem
         expect { Game.new('Username', 'medium') }.not_to raise_error
         expect { Game.new('Username', 'hell') }.not_to raise_error
 
-        expect { Game.new('Username', :some_other_difficulty) }.to raise_error(ArgumentError)
-        expect { Game.new('Username', nil) }.to raise_error(ArgumentError)
-        expect { Game.new('Username', 123) }.to raise_error(ArgumentError)
+        expect { Game.new('Username', :some_other_difficulty) }.to raise_error(ArgumentError, 'No such difficulty')
+        expect { Game.new('Username', nil) }.to raise_error(ArgumentError, 'No such difficulty')
+        expect { Game.new('Username', 123) }.to raise_error(ArgumentError, 'No such difficulty')
       end
 
       it "has 'easy' difficulty" do
@@ -117,7 +117,7 @@ module IcodebreakerGem
     describe '#hints' do
       it 'have limited amount of hints' do
         DIFFICULTIES.each do |level|
-          game = Game.new('HintUser', level.first, '1234')
+          game = Game.new('HintUser', level.first, 1234)
           game.hints_total.times do
             expect(game.hint).to match(/^[0-9]$/)
           end
@@ -126,7 +126,6 @@ module IcodebreakerGem
       end
     end
     describe '#load_storage' do
-     
       it 'returns empty array if file not exist' do
         expect(Storage.load_storage).to be_empty
       end

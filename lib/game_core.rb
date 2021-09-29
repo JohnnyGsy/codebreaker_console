@@ -4,19 +4,16 @@ module IcodebreakerGem
   class GameCore
     include Validation
 
-    attr_reader :secret
-
     def initialize(secret)
       validate_code secret
 
       @secret = secret.to_s
-      @shuffle = @secret.each_char.to_a.shuffle
-      @hint_idx = 0
+      @shuffle = @secret.chars.shuffle
     end
 
     def compare(guess)
       return '++++' if @secret == guess
-      return '' if (@secret.each_char.to_a & guess.each_char.to_a).empty?
+      return '' if (@secret.chars & guess.chars).blank?
 
       pluses1, minuses1 = pluses_and_minuses(@secret, guess)
 
@@ -26,24 +23,21 @@ module IcodebreakerGem
     end
 
     def hint
-      result = @shuffle[@hint_idx]
-      @hint_idx += 1
-      @hint_idx = 0 if @hint_idx >= @shuffle.size
-      result
+      @shuffle.pop
     end
 
     def self.random
-      (0..3).map { rand(1..6) }.map(&:to_s).join
+      (0..3).map { rand(1..6) }.join
     end
 
     private
 
-    def pluses_and_minuses(word1, word2)
+    def pluses_and_minuses(guess_secret, secret_guess)
       pluses = minuses = 0
-      word1.each_char.to_a.each_index do |index|
-        if word2[index] == word1[index]
+      guess_secret.chars.each_index do |index|
+        if secret_guess[index] == guess_secret[index]
           pluses += 1
-        elsif word2.include? word1[index]
+        elsif secret_guess.include? guess_secret[index]
           minuses += 1
         end
       end

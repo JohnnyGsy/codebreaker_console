@@ -15,7 +15,7 @@ module IcodebreakerGem
     class << self
       def load_storage
         create_storage
-        YAML.load(File.read(data_path)) || []
+        YAML.safe_load(File.read(data_path)) || []
       end
 
       def sort_codebreakers

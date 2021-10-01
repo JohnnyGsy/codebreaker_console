@@ -61,8 +61,8 @@ module IcodebreakerGem
     describe '#gameplay' do
       it 'have play status' do
         game = Game.new
-        expect(STATUS).to eq(%i[go_on over])
-        expect(RESULT).to eq(%i[win lose])
+        expect(IcodebreakerGem::Game::STATUS).to eq(%i[go_on over])
+        expect(IcodebreakerGem::Game::RESULT).to eq(%i[win lose])
         expect(game.status).to be(:go_on)
         expect(game.result).to be_nil
       end
@@ -116,15 +116,16 @@ module IcodebreakerGem
 
     describe '#hints' do
       it 'have limited amount of hints' do
-        DIFFICULTIES.each do |level|
+        IcodebreakerGem::Game::DIFFICULTIES.each do |level|
           game = Game.new('HintUser', level.first, 1234)
           game.hints_total.times do
             expect(game.hint).to match(/^[0-9]$/)
           end
-          expect(game.hint).to eq('No hints left.')
+          expect(game.hint).to eq(I18n.t('message.no_hints'))
         end
       end
     end
+
     describe '#load_storage' do
       it 'returns empty array if file not exist' do
         expect(Storage.load_storage).to be_empty

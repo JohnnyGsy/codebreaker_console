@@ -13,7 +13,7 @@ module IcodebreakerGem
 
     def compare(guess)
       return '++++' if @secret == guess
-      return '' if (@secret.chars & guess.chars).blank?
+      return '' if (@secret.chars & guess.chars).empty?
 
       pluses1, minuses1 = pluses_and_minuses(@secret, guess)
 

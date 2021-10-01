@@ -1,0 +1,4 @@
+en:
+    message:
+      lose: "The game is over."
+      no_hints: "No hints left."

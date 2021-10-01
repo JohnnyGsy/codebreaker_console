@@ -5,6 +5,23 @@ module IcodebreakerGem
     include Validation
     include Storage
 
+    STATUS = %i[go_on over].freeze
+    RESULT = %i[win lose].freeze
+    DIFFICULTIES = {
+      easy: {
+        attempts_total: 15,
+        hints_total: 2
+      },
+      medium: {
+        attempts_total: 10,
+        hints_total: 1
+      },
+      hell: {
+        attempts_total: 5,
+        hints_total: 1
+      }
+    }.freeze
+
     attr_reader :name, :difficulty, :attempts_used, :hints_used, :status, :result
 
     def initialize(name = 'User1', difficulty = :easy, secret = GameCore.random)
@@ -40,19 +57,19 @@ module IcodebreakerGem
         check_lose
         answer
       when :over
-        'The game is over.'
+        I18n.t('message.lose')
       end
     end
 
     def hint
       case @status
       when :go_on
-        return 'No hints left.' if @hints_used >= hints_total
+        return I18n.t('message.no_hints') if @hints_used >= hints_total
 
         @hints_used += 1
         @code.hint
       when :over
-        'The game is over.'
+        I18n.t('message.lose')
       end
     end
 

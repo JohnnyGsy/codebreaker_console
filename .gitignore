@@ -14,8 +14,7 @@
 # .env
 
 # Ignore Byebug command history file.
-.byebug_history
-
+.byebug_historystorage
 ## Specific to RubyMotion:
 .dat*
 .repl_history

@@ -1,3 +1,5 @@
+
+
 module IcodebreakerGem
   RSpec.describe GameCore do
     it 'should contain the secret code' do
@@ -57,7 +59,7 @@ module IcodebreakerGem
 
       test_compare.each do |test_variant, test_content|
         describe test_variant do
-          secret = test_content[:secret].clone
+          secret = test_content[:secret]
           code = GameCore.new(secret)
           test_content[:guess].each do |input, output|
             formatted_output = "'#{output}'"

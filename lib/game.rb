@@ -22,7 +22,7 @@ module IcodebreakerGem
       }
     }.freeze
 
-    attr_reader :name, :difficulty, :attempts_used, :hints_used, :status, :result
+    attr_accessor :name, :difficulty, :attempts_used, :hints_used, :status, :result, :code
 
     def initialize(name = 'User1', difficulty = :easy, secret = GameCore.random)
       validate_name name

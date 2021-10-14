@@ -4,9 +4,8 @@ module IcodebreakerGem
   module Storage
     DATA_FILE = 'codebreakers.yml'
     STORAGE_PATH = './storage/'
-   
+
     class << self
-     
       def save_storage(game)
         create_storage
         games = load_storage
@@ -14,8 +13,8 @@ module IcodebreakerGem
         File.open(data_path, 'w') do |file|
           YAML.dump(games, file)
         end
-      
       end
+
       def load_storage
         create_storage
         YAML.load(File.read(data_path)) || []

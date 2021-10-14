@@ -3,6 +3,7 @@
 module IcodebreakerGem
   class GameCore
     include Validation
+    attr_reader :secret
 
     def initialize(secret)
       validate_code secret
@@ -21,7 +22,7 @@ module IcodebreakerGem
 
       '+' * [pluses1, pluses2].min + '-' * [minuses1, minuses2].min
     end
-
+    
     def hint
       @shuffle.pop
     end

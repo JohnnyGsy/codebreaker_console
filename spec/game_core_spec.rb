@@ -1,5 +1,3 @@
-
-
 module IcodebreakerGem
   RSpec.describe GameCore do
     it 'should contain the secret code' do

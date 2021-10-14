@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    icodebreaker_gem (0.3.6)
+    icodebreaker_gem (0.3.7)
       rake (~> 13.0)
 
 GEM
@@ -66,6 +66,7 @@ GEM
     unicode-display_width (2.0.0)
 
 PLATFORMS
+  ruby
   x86_64-linux
 
 DEPENDENCIES

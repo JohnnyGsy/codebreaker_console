@@ -22,7 +22,7 @@ module IcodebreakerGem
 
       '+' * [pluses1, pluses2].min + '-' * [minuses1, minuses2].min
     end
-    
+
     def hint
       @shuffle.pop
     end

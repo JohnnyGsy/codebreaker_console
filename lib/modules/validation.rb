@@ -6,15 +6,21 @@ module IcodebreakerGem
     CODE = /^[1-6]{4}$/.freeze
 
     def validate_name(name)
-      raise ArgumentError, 'Incorrect username' unless name.to_s.match?(USERNAME)
+      return unless name.to_s.match?(USERNAME)
+
+      true
     end
 
     def validate_code(code)
-      raise ArgumentError, 'Incorrect code' unless code.to_s.match?(CODE)
+      return unless code.to_s.match?(CODE)
+
+      true
     end
 
     def validate_difficulty(difficulty)
-      raise ArgumentError, 'No such difficulty' unless %i[easy medium hell].include? difficulty.to_s.to_sym
+      return unless %i[easy medium hell].include? difficulty.to_s.to_sym
+
+      true
     end
   end
 end

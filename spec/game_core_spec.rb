@@ -5,12 +5,6 @@ module IcodebreakerGem
       expect(code.instance_variable_get(:@secret)).to eq('6543')
     end
 
-    it 'raise error on incorrect codes' do
-      expect { GameCore.new('1234') }.not_to raise_error
-      expect { GameCore.new('12345') }.to raise_error(ArgumentError)
-      expect { GameCore.new('123') }.to raise_error(ArgumentError)
-    end
-
     describe '#random' do
       it 'should generate random codes that matches pattern' do
         expect(GameCore.random).to match(/^[1-6]{4}$/)

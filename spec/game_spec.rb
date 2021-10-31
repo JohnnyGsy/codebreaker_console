@@ -2,28 +2,7 @@
 
 module IcodebreakerGem
   RSpec.describe Game do
-    describe '#username' do
-      it 'needs formatted username ' do
-        expect { Game.new('') }.to raise_error(ArgumentError)
-        expect { Game.new('ThisIsWayTooLongUserName') }.to raise_error(ArgumentError)
-      end
-    end
-
     describe '#difficulties' do
-      it 'forbid incorrect difficulties' do
-        expect { Game.new('Username', :easy) }.not_to raise_error
-        expect { Game.new('Username', :medium) }.not_to raise_error
-        expect { Game.new('Username', :hell) }.not_to raise_error
-
-        expect { Game.new('Username', 'easy') }.not_to raise_error
-        expect { Game.new('Username', 'medium') }.not_to raise_error
-        expect { Game.new('Username', 'hell') }.not_to raise_error
-
-        expect { Game.new('Username', :some_other_difficulty) }.to raise_error(ArgumentError, 'No such difficulty')
-        expect { Game.new('Username', nil) }.to raise_error(ArgumentError, 'No such difficulty')
-        expect { Game.new('Username', 123) }.to raise_error(ArgumentError, 'No such difficulty')
-      end
-
       it "has 'easy' difficulty" do
         easy_game = Game.new('UserName', :easy)
         expect(easy_game.name).to eq('UserName')
